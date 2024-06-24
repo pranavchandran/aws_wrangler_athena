@@ -1,4 +1,8 @@
+import os
 import awswrangler as wr
+
+# Set the AWS region
+os.environ['AWS_DEFAULT_REGION'] = 'us-east-1' 
 
 # Example function to run an Athena query
 def run_athena_query(query, database, s3_output):
