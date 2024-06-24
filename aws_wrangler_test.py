@@ -1,8 +1,18 @@
 import os
 import awswrangler as wr
 
-# Set the AWS region
-os.environ['AWS_DEFAULT_REGION'] = 'us-east-1' 
+# take the cred from env
+aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
+aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+
+# split the cred from env
+aws_access_key_id = aws_access_key_id.split(':')[1]
+aws_secret_access_key = aws_secret_access_key.split(':')[1]
+
+# Set the AWS credentials and region
+os.environ['AWS_ACCESS_KEY_ID'] = aws_access_key_id
+os.environ['AWS_SECRET_ACCESS_KEY'] = aws_secret_access_key
+os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'  # Replace 'us-east-1' with your region
 
 # Example function to run an Athena query
 def run_athena_query(query, database, s3_output):
